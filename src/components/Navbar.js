@@ -1,24 +1,37 @@
 import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   let location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
+
   useEffect(() => {
     console.log(location.pathname);
   }, [location]);
+
   return (
-    <div className="navbar flex w-1vw mt-0 bg-slate-200 h-14 p-4 ">
+    <div className="navbar flex w-full mt-0 bg-slate-200 h-14 p-4">
       <div className="nav1 flex cursor-pointer text-sm">
-        <span ml-0>Onlines Notes Drive </span>
+        <span className="ml-0">Online Notes Drive</span>
       </div>
       <div className="nav2 flex-grow font-thin">
         <ul className="flex ml-20 space-x-32 text-sm">
-          <Link className={`cursor-pointer ${location.pathname === "/" ? "font-bold text-black" : ""}`}to="/">Home</Link>
+          <Link className={`cursor-pointer ${location.pathname === "/" ? "font-bold text-black" : ""}`} to="/">Home</Link>
           <Link className={`cursor-pointer ${location.pathname === "/about" ? "font-bold text-black" : ""}`} to="/about">About</Link>
-          <Link className={`cursor-pointer ${location.pathname === "/login" ? "font-bold text-black" : ""}`} to="/login">Login</Link>
-          <Link className={`cursor-pointer ${location.pathname === "/signup" ? "font-bold text-black" : ""}`} to="/signup">Sign Up</Link>
+          {localStorage.getItem('token') ? (
+            <button onClick={handleLogout} className={`cursor-pointer ${location.pathname === "/logout" ? "font-bold text-black" : ""}`}   >Logout</button>
+          ) : (
+            <>
+              <Link className={`cursor-pointer ${location.pathname === "/login" ? "font-bold text-black" : ""}`} to="/login">Login</Link>
+              <Link className={`cursor-pointer ${location.pathname === "/signup" ? "font-bold text-black" : ""}`} to="/signup">Sign Up</Link>
+            </>
+          )}
         </ul>
-
       </div>
     </div>
   );
