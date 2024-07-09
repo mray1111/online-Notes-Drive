@@ -13,11 +13,12 @@ const Navbar = () => {
       </div>
       <div className="nav2 flex-grow font-thin">
         <ul className="flex ml-20 space-x-32 text-sm">
-          <Link
-            className={`cursor-pointer ${location.pathname === "/" ? "font-bold text-black" : ""}`}to="/">Home</Link>
-          <Link
-            className={`cursor-pointer ${location.pathname === "/about" ? "font-bold text-black" : ""}`} to="/about">About</Link>
+          <Link className={`cursor-pointer ${location.pathname === "/" ? "font-bold text-black" : ""}`}to="/">Home</Link>
+          <Link className={`cursor-pointer ${location.pathname === "/about" ? "font-bold text-black" : ""}`} to="/about">About</Link>
+          <Link className={`cursor-pointer ${location.pathname === "/login" ? "font-bold text-black" : ""}`} to="/login">Login</Link>
+          <Link className={`cursor-pointer ${location.pathname === "/signup" ? "font-bold text-black" : ""}`} to="/signup">Sign Up</Link>
         </ul>
+
       </div>
     </div>
   );

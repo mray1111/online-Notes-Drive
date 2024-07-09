@@ -1,108 +1,86 @@
-import { useState } from 'react'
-import NoteContext from './noteContext'
+import React, { useState } from "react";
+import NoteContext from "./noteContext";
 
-const NoteState=(props)=>{
+const NoteState = (props) => {
+  const host = "http://localhost:5000";
+  const notesInitial = [];
+  const [notes, setNotes] = useState(notesInitial);
 
-    const host="http://localhost:5000"
+  // Get all Notes
+  const getNotes = async () => {
+    const response = await fetch(`${host}/api/notes/fetchallnotes`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY4OTYwNzI2YjgwOGE0M2NhMmY5NzRiIn0sImlhdCI6MTcyMDUwNTY2N30.R2B8-egn9lKxacW5QYNU2E35vZA3LgpG8HhVOkP2T-k",
+      },
+    });
+    const json = await response.json();
+    setNotes(json);
+  };
 
-    const notesInitial=[
-        {
-          "_id": "6689623b9f4e718ccb8ddfca2",
-          "user": "668960726b808a43ca2f974b",
-          "title": "my tiltle1",
-          "description": "this is description 1 lorem20  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat delectus aliquam, eius nam quis ipsum necessitatibus quas veritatis voluptate, tenetur laborum laboriosam expedita cum iure, nihil nostrum quibusdam possimus repudiandae?",
-          "tag": "personal",
-          "date": "2024-07-06T15:26:51.203Z",
-          "__v": 0
-        },
-        {
-          "_id": "668962459f4e78c55cb8ddfca4",
-          "user": "668960726b808a43ca2f974b",
-          "title": "my tiltle1",
-          "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat delectus aliquam, eius nam quis ipsum necessitatibus quas veritatis voluptate, tenetur laborum laboriosam expedita cum iure, nihil nostrum quibusdam possimus repudiandae?",
-          "tag": "personal",
-          "date": "2024-07-06T15:27:01.673Z",
-          "__v": 0
-        },
-        {
-            "_id": "6689623b459f4e78ccb8ddfca2",
-            "user": "668960726b808a43ca2f974b",
-            "title": "my tiltle1",
-            "description": "this is description 1 lorem20  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat delectus aliquam, eius nam quis ipsum necessitatibus quas veritatis voluptate, tenetur laborum laboriosam expedita cum iure, nihil nostrum quibusdam possimus repudiandae?",
-            "tag": "personal",
-            "date": "2024-07-06T15:26:51.203Z",
-            "__v": 0
-          },
-          {
-            "_id": "668962459f477e78ccb8ddfca4",
-            "user": "668960726b808a43ca2f974b",
-            "title": "my tiltle1",
-            "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat delectus aliquam, eius nam quis ipsum necessitatibus quas veritatis voluptate, tenetur laborum laboriosam expedita cum iure, nihil nostrum quibusdam possimus repudiandae?",
-            "tag": "personal",
-            "date": "2024-07-06T15:27:01.673Z",
-            "__v": 0
-          }
-      ]
+  // Add a Note
+  const addNote = async (title, description, tag) => {
+    const response = await fetch(`${host}/api/notes/addnote`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY4OTYwNzI2YjgwOGE0M2NhMmY5NzRiIn0sImlhdCI6MTcyMDUwNTY2N30.R2B8-egn9lKxacW5QYNU2E35vZA3LgpG8HhVOkP2T-k",
+      },
+      body: JSON.stringify({ title, description, tag }),
+    });
 
-    const s1={
-        "name":"manish",
-        "class":"vi"
-    }
+    const note = await response.json();
+    setNotes(notes.concat(note));
+  };
 
-    const [state,setState]=useState(s1)
-    const [notes,setNotes]=useState(notesInitial)
+  // Delete a Note
+  const deleteNote = async (id) => {
+    const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY4OTYwNzI2YjgwOGE0M2NhMmY5NzRiIn0sImlhdCI6MTcyMDUwNTY2N30.R2B8-egn9lKxacW5QYNU2E35vZA3LgpG8HhVOkP2T-k",
+      },
+    });
 
-    const update=()=>{
-        setTimeout(() => {
-            setState({
-                "name":"manish updated after 1 mins ",
-                "class":"7"
-            })
-        }, 1000);
-    }
+    const json = response.json();
+    const newNotes = notes.filter((note) => note._id !== id);
+    setNotes(newNotes);
+  };
 
+  // Edit a Note
+  const editNote = async (id, title, description, tag) => {
+    const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY4OTYwNzI2YjgwOGE0M2NhMmY5NzRiIn0sImlhdCI6MTcyMDUwNTY2N30.R2B8-egn9lKxacW5QYNU2E35vZA3LgpG8HhVOkP2T-k",
+      },
+      body: JSON.stringify({ title, description, tag }),
+    });
+    const json = await response.json();
 
-    const addNote=(title,description,tag)=>{
-        console.log("adding a new note ")
-        const note={
-            "_id": "668962459f4e78ccb8ddfca4",
-            "user": "668960726b808a43ca2f974b",
-            "title":title,
-            "description":description,
-            "date": "2024-07-06T15:27:01.673Z",
-            "__v": 0
-        }
-
-        setNotes(notes.concat(note))
-    }
-
-     // Delete a Note
-     const deleteNote = (id)=>{
-        // TODO: API Call
-        console.log("Deleting the note with id" + id);
-        const newNotes = notes.filter((note)=>{return note._id!==id})
-        setNotes(newNotes)
+    let newNotes = JSON.parse(JSON.stringify(notes));
+    for (let index = 0; index < newNotes.length; index++) {
+      const element = newNotes[index];
+      if (element._id === id) {
+        newNotes[index].title = title;
+        newNotes[index].description = description;
+        newNotes[index].tag = tag;
+        break;
       }
+    }
+    setNotes(newNotes);
+  };
 
-
-      //edit a Note
-      const editNote=(id,title,description,tag)=>{
-            for (let index = 0; index < notes.length; index++) {
-                const element = notes[index];
-
-                if (element._id ===id){
-                    element.title=title;
-                    element.description=description;
-                    element.tag=tag
-                }
-                
-            }
-      }
-
-    return( <NoteContext.Provider value={{notes,addNote,deleteNote,editNote}}>
-        {props.children}
+  return (
+    <NoteContext.Provider
+      value={{ notes, addNote, deleteNote, editNote, getNotes }}
+    >
+      {props.children}
     </NoteContext.Provider>
-    )
-}
+  );
+};
 
-export default NoteState
+export default NoteState;
