@@ -22,7 +22,7 @@ const Navbar = () => {
       <div className="nav2 flex-grow font-thin">
         <ul className="flex ml-20 space-x-32 text-sm">
           <Link className={`cursor-pointer ${location.pathname === "/" ? "font-bold text-black" : ""}`} to="/">Home</Link>
-          <Link className={`cursor-pointer ${location.pathname === "/about" ? "font-bold text-black" : ""}`} to="/about">About</Link>
+          <Link className={`cursor-pointer ${location.pathname === "/about" ? "font-bold text-black" : ""}`} to="/about">About Me </Link>
           {localStorage.getItem('token') ? (
            <Link to="/logout" className={`cursor-pointer ${location.pathname === "/logout" ? "font-bold text-black" : ""}`}  >Logout</Link>
           ) : (

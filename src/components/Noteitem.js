@@ -14,14 +14,14 @@ const Noteitem = ({ note, updateNote }) => {
     };
 
     return (
-        <div className="card bg-blue-300 text-black p-4 m-3 w-64 h-64 border-black rounded-lg shadow-lg">
+        <div className="card bg-blue-200 text-black p-4 m-20 w-64 h-80 border-black rounded-lg shadow-lg overflow-y-auto">
             <h5 className="text-center font-bold">{note.title}</h5>
-            <div className="mt-3 flex justify-between">
+            <div className="mt-3 flex justify-end">
                 <button
-                    className="text-red-600 hover:text-red-900 focus:outline-none text-end"
-                    onClick={handleDelete} // Call handleDelete directly
+                    className="text-red-600 hover:text-red-900 focus:outline-none text-end font-bold text-xs "
+                    onClick={handleDelete}
                 >
-                    Delete
+                    Delete This Note
                 </button>
             </div>
             <p className="mt-2">{note.description}</p>
