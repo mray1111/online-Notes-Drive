@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 const Signup = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "", name: "" });
+  const navigate=useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,6 +16,16 @@ const Signup = () => {
       body: JSON.stringify({ email: credentials.email, password: credentials.password, name: credentials.name })
     });
     const json = await response.json();
+
+    if (json){
+        // Save the auth token and redirect
+        localStorage.setItem('token', json.authToken); 
+        navigate("/");
+
+    }
+    else{
+        alert("Invalid credentials");
+    }
     console.log("Sign up successfully ")
     console.log(json);
   };

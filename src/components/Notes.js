@@ -1,18 +1,26 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import noteContext from '../context/notes/noteContext';
-import AddNote from "./Addnote"
-import Noteitem from './Noteitem'
+import AddNote from "./Addnote";
+import Noteitem from './Noteitem';
 
 const Notes = () => {
     const context = useContext(noteContext);
     const { notes, getNotes, editNote } = context;
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
-        const fetchData = async () => {
-            await getNotes();
-        };
-        fetchData();
-    }, [getNotes]);
+        const token = localStorage.getItem('token');
+        console.log("Token in notes is ",token)
+        if (token) {
+            setIsAuthenticated(true);
+            const fetchData = async () => {
+                await getNotes();
+            };
+            fetchData();
+        } else {
+            setIsAuthenticated(false);
+        }
+    }, []);
 
     const ref = useRef(null);
     const refClose = useRef(null);
@@ -36,6 +44,10 @@ const Notes = () => {
     const onChange = (e) => {
         setNote({ ...note, [e.target.name]: e.target.value });
     };
+
+    if (!isAuthenticated) {
+        return <div className="container mx-2 text-center mt-2 text-3xl">Please login to access your notes</div>;
+    }
 
     return (
         <>

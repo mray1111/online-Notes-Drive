@@ -1,14 +1,15 @@
-import React from 'react'
-import Notes from './Notes'
+import React from 'react';
+import Notes from './Notes';
+import NotAuth from './NotAuth';
 
 const Home = () => {
+  const token = localStorage.getItem('token');
 
   return (
     <>
-     <div className='text-center mt-2 text-3xl '>Your Notes </div>
-     <Notes/>
-    </>
-  )
-}
+    {token ? <Notes /> : <NotAuth />}
+  </>
+  );
+};
 
-export default Home
+export default Home;

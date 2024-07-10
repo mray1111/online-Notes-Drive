@@ -40,14 +40,6 @@ const AddNote = () => {
             onChange={onChange}
           />
         </div>
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            className="h-4 w-4 text-indigo-600 border-gray-300 rounded"
-            id="exampleCheck1"
-          />
-          <label htmlFor="exampleCheck1" className="ml-2 block text-sm text-gray-900">Check me out</label>
-        </div>
         <button
           type="submit"
           className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

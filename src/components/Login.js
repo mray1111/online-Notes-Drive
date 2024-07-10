@@ -5,7 +5,6 @@ const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:5000/api/auth/login", {
@@ -16,19 +15,17 @@ const Login = () => {
       body: JSON.stringify({ email: credentials.email, password: credentials.password })
     });
     const json = await response.json();
-    console.log("login successfully ")
-    console.log(json);
+    //console.log("login response: is ", json);
 
-    if (json){
-        // Save the auth token and redirect
-        localStorage.setItem('token', json.authtoken); 
-        navigate("/");
-
+    if (json.authToken) {
+      // Save the auth token and redirect
+      localStorage.setItem('token', json.authToken);
+      console.log("auth-token is ",json.authToken)
+      alert("Login successful");
+      navigate("/");
+    } else {
+      alert("Invalid credentials");
     }
-    else{
-        alert("Invalid credentials");
-    }
-
   };
 
   const onChange = (e) => {

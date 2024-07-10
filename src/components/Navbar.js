@@ -5,10 +5,10 @@ const Navbar = () => {
   let location = useLocation();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem('token');
+  //   navigate('/logout');
+  // };
 
   useEffect(() => {
     console.log(location.pathname);
@@ -24,7 +24,7 @@ const Navbar = () => {
           <Link className={`cursor-pointer ${location.pathname === "/" ? "font-bold text-black" : ""}`} to="/">Home</Link>
           <Link className={`cursor-pointer ${location.pathname === "/about" ? "font-bold text-black" : ""}`} to="/about">About</Link>
           {localStorage.getItem('token') ? (
-            <button onClick={handleLogout} className={`cursor-pointer ${location.pathname === "/logout" ? "font-bold text-black" : ""}`}   >Logout</button>
+           <Link to="/logout" className={`cursor-pointer ${location.pathname === "/logout" ? "font-bold text-black" : ""}`}  >Logout</Link>
           ) : (
             <>
               <Link className={`cursor-pointer ${location.pathname === "/login" ? "font-bold text-black" : ""}`} to="/login">Login</Link>
