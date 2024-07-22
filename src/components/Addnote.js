@@ -17,7 +17,7 @@ const AddNote = () => {
   };
 
   return (
-    <div className="container mx-auto my-6 p-4 bg-white rounded shadow-md">
+    <div className="container md:mx-auto my-6 p-4 bg-white rounded shadow-md max-sm:mt-[100px] max-sm:ml-[200px] max-sm:w-[400px] ">
       <h2 className="text-2xl font-bold mb-4">Add a Note</h2>
       <form className="space-y-4">
         <div>

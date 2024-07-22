@@ -15,12 +15,12 @@ const Navbar = () => {
   }, [location]);
 
   return (
-    <div className="navbar flex w-full mt-0 bg-slate-200 h-14 p-4 ">
+    <div className="navbar flex  mt-0 bg-slate-200 p-4 md:h-[80px] max-sm:w-[800px] text-black ">
       <div className="nav1 flex cursor-pointer text-sm">
-        <span className="ml-0">Online Notes Drive</span>
+        <span className="ml-0 flex max-md:text-center">Online Notes Drive</span>
       </div>
-      <div className="nav2 flex-grow font-thin">
-        <ul className="flex ml-20 space-x-32 text-sm">
+      <div className="nav2 flex-grow md:font-thin text-black ">
+        <ul className="flex ml-20 space-x-32 md:text-sm max-sm:font-bold ">
           <Link className={`cursor-pointer ${location.pathname === "/" ? "font-bold text-black" : ""}`} to="/">Home</Link>
           <Link className={`cursor-pointer ${location.pathname === "/about" ? "font-bold text-black" : ""}`} to="/about">About Me </Link>
           {localStorage.getItem('token') ? (

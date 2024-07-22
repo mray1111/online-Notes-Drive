@@ -3,7 +3,7 @@ import { FaLinkedin } from 'react-icons/fa';
 
 const About = () => {
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-500 p-4">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-500 p-4 max-sm:w-[800px]">
             <div className="bg-white p-8 rounded-lg shadow-lg w-4/6">
                 <h1 className="text-4xl font-bold mb-4 text-center text-gray-800">About Me</h1>
                 <p className="text-lg mb-4 text-gray-700">

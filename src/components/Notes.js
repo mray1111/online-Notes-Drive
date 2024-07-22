@@ -52,7 +52,7 @@ const Notes = () => {
     return (
         <>
             <AddNote />
-            <div className="row my-3">
+            <div className="row my-3 gap-5 m-3 max-sm:w-[700px] ml-10 flex justify-center items-center">
                 <h1 className='text-xl font-semibold text-center w-1vw' >Your Notes</h1>
                 <div className="container mx-2">
                     {notes.length === 0 && 'No notes to display'}
