@@ -6,7 +6,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   // const handleLogout = () => {
-  //   localStorage.removeItem('token');
+  //   localStorage.removeItem('Atoken');
   //   navigate('/logout');
   // };
 
@@ -15,7 +15,7 @@ const Navbar = () => {
   }, [location]);
 
   return (
-    <div className="navbar flex w-full mt-0 bg-slate-200 h-14 p-4">
+    <div className="navbar flex w-full mt-0 bg-slate-200 h-14 p-4 ">
       <div className="nav1 flex cursor-pointer text-sm">
         <span className="ml-0">Online Notes Drive</span>
       </div>

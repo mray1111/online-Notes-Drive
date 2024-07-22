@@ -14,7 +14,7 @@ const Noteitem = ({ note, updateNote }) => {
     };
 
     return (
-        <div className="card bg-blue-200 text-black p-4 m-20 w-64 h-80 border-black rounded-lg shadow-lg overflow-y-auto">
+        <div className="card bg-blue-200 text-black p-4 m-WW20 w-64 h-80 border-black rounded-lg shadow-lg overflow-y-auto">
             <h5 className="text-center font-bold">{note.title}</h5>
             <div className="mt-3 flex justify-end">
                 <button
