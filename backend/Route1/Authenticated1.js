@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../Models/User");
+const User = require("../Models/User.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
@@ -9,7 +9,7 @@ const JWT_SECRET = process.env.JWT_SECRET_KEY || 'this_is_a_jwt_secret_key';
 
 
 const { body, validationResult } = require("express-validator");
-const Fetchuser = require("../Middleware/Fetchuser");
+const Fetchuser = require("../Middleware1/Fetchuser1.js");
 
 //registration route
 router.post(

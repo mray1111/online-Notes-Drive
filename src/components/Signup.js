@@ -8,7 +8,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("https://iitg-manish1-g54c9ugw3-manish-rays-projects.vercel.app/api/auth/createuser", {
+    const response = await fetch("https://i-notebook-backend-iitg-1.onrender.com/api/auth/createuser", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

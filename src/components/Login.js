@@ -7,7 +7,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("https://iitg-manish1-g54c9ugw3-manish-rays-projects.vercel.app/api/auth/login", {
+    const response = await fetch("https://i-notebook-backend-iitg-1.onrender.com/api/auth/login", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

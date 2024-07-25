@@ -6,7 +6,7 @@ const JWT_SECRET = process.env.JWT_SECRET_KEY || 'this_is_a_jwt_secret_key';
 
 //console.log(JWT_SECRET);
 
-const Fetchuser = (req, res, next) => {
+const Fetchuser1 = (req, res, next) => {
   const token = req.header('auth-token');
   if (!token) {
     return res.status(401).send({ message: "Please login to access this resource" });
@@ -25,4 +25,4 @@ const Fetchuser = (req, res, next) => {
 };
 
 
-module.exports = Fetchuser;
+module.exports = Fetchuser1;
