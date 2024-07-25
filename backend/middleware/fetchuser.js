@@ -2,11 +2,11 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 
 dotenv.config({ path: "../config.env" });
-const JWT_SECRET = process.env.JWT_SECRET_KEY;
+const JWT_SECRET = process.env.JWT_SECRET_KEY || 'this_is_a_jwt_secret_key';
 
 //console.log(JWT_SECRET);
 
-const fetchuser = (req, res, next) => {
+const Fetchuser = (req, res, next) => {
   const token = req.header('auth-token');
   if (!token) {
     return res.status(401).send({ message: "Please login to access this resource" });
@@ -25,4 +25,4 @@ const fetchuser = (req, res, next) => {
 };
 
 
-module.exports = fetchuser;
+module.exports = Fetchuser;
